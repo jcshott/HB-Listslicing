@@ -140,10 +140,11 @@ def delete_third_and_seventh(input_list):
     Remove the third and seventh elements of the input list.
     [ A, B, C, D, E, F, G, H ] --> [ A, B, D, E, F, H ]
     """
-    input_list[6:] = input_list[7:]
-    input_list[2:] = input_list[3:]
-    pass
+    # input_list[6:] = input_list[7:]
+    # input_list[2:] = input_list[3:]
 
+    input_list[6:7] = []
+    input_list[2:3] = []
 
 def delete_middle(input_list):
     """
@@ -152,7 +153,8 @@ def delete_middle(input_list):
     [ A, B, C, D, E, F, G, H ] --> [ A, B, G, H ]
     """
 
-    input_list[2:] = input_list[-2:]
+    # input_list[2:] = input_list[-2:]
+    input_list[2:-2] = []
 
     pass
 
@@ -182,8 +184,12 @@ def custom_len(input_list):
     """
     like len(input_list), should return the number of items in the list
     """
+    count = 0
 
-    return 0
+    for item in input_list:
+        count += 1
+
+    return count
 
 
 # For the next four exercises, you'll need to be clever and think about ways
@@ -201,7 +207,8 @@ def custom_append(input_list, value):
     and return nothing
     """
 
-    pass
+    input_list[-1:] = [input_list[-1], value]
+    
 
 
 def custom_extend(input_list, second_list):
@@ -209,8 +216,8 @@ def custom_extend(input_list, second_list):
     like input_list.extend(second_list), should append every item in the second
     list to the end of the first list and return nothing
     """
-
-    pass
+    for item in second_list:
+        input_list[-1:] = [input_list[-1], item]
 
 
 def custom_insert(input_list, index, value):
@@ -218,8 +225,13 @@ def custom_insert(input_list, index, value):
     like input_list.insert(index, value), should insert (not replace) the value
     at the specified index of the input list and return nothing
     """
+    end_of_list = input_list[index:]
+    beginning_of_list = input_list[0:index]
+    beginning_of_list[-1:] = [beginning_of_list[-1], value] 
+    for item in end_of_list:
+        beginning_of_list[-1:] = [beginning_of_list[-1], item]
 
-    pass
+
 
 
 def custom_remove(input_list, value):
